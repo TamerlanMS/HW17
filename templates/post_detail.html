@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<article>
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+</article>
+
+<h2>Комментарии:</h2>
+<ul>
+    {% for comment in post.comments.all %}
+    <li>{{ comment.content }} от {{ comment.author }}</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'comment_create' post.pk %}">Добавить комментарий</a>
+{% endblock %}
